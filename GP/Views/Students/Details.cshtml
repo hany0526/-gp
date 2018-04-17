@@ -1,0 +1,82 @@
+﻿@model Models.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GPA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GPA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.skills)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.skills)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.leader_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.leader_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
