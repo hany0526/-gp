@@ -202,6 +202,7 @@
     <Content Include="Views\Students\Register.cshtml" />
     <Content Include="Views\Admins\ListProfsssors.cshtml" />
     <Content Include="Views\Admins\AddPro.cshtml" />
+    <Content Include="Views\Admins\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

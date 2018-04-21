@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Models.Models.Professor>
 
+<br /><br />
 <p>
-    @Html.ActionLink("Add Professor", "AddProfessor")
+    @Html.ActionLink("Add Professor", "AddPro")
 </p>
 <table class="table">
     <tr>
@@ -28,10 +29,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.password)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        <td>         
+        <!--
+            @Html.ActionLink("Edit", "EditPro", new { id=item.id }) |
+            @Html.ActionLink("Delete", "DeletePro", new { id=item.id })
+        -->
         </td>
     </tr>
 }
