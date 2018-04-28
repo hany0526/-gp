@@ -129,20 +129,27 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
-    <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IdeasController.cs" />
     <Compile Include="Controllers\ProfessorsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804282035427_1.cs" />
+    <Compile Include="Migrations\201804282035427_1.Designer.cs">
+      <DependentUpon>201804282035427_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\GPContext.cs" />
     <Compile Include="Models\Idea.cs" />
     <Compile Include="Models\Professor.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ProfessorIdea.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -181,7 +188,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Student.cshtml" />
     <Content Include="Views\Home\Doctor.cshtml" />
-    <Content Include="Views\Car\Index.cshtml" />
     <Content Include="Views\Students\Add.cshtml" />
     <Content Include="Views\Students\Delete.cshtml" />
     <Content Include="Views\Students\Details.cshtml" />
@@ -203,6 +209,17 @@
     <Content Include="Views\Admins\ListProfsssors.cshtml" />
     <Content Include="Views\Admins\AddPro.cshtml" />
     <Content Include="Views\Admins\Login.cshtml" />
+    <Content Include="Views\Ideas\Create.cshtml" />
+    <Content Include="Views\Ideas\Delete.cshtml" />
+    <Content Include="Views\Ideas\Details.cshtml" />
+    <Content Include="Views\Ideas\Edit.cshtml" />
+    <Content Include="Views\Ideas\Index.cshtml" />
+    <Content Include="Views\Students\addIdea.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -214,6 +231,11 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804282035427_1.resx">
+      <DependentUpon>201804282035427_1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

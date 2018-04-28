@@ -6,33 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-//using GP.Models;
 using Models.Models;
+using System.Text;
 
 namespace GP.Controllers
 {
     public class StudentsController : Controller
     {
         private GPContext db = new GPContext();
-
-        // GET: Professors/login
-        public ActionResult login()
-        {
-            return View();
-        }
-
-        // POST: Students/login
-        [HttpPost]
-        public ActionResult login([Bind(Include = "email,password")]  Student student)
-        {
-            var studentList = db.Students.Where(m => m.email == student.email && m.password == student.password).ToList();
-
-            if (studentList.Count != 0)
-                return RedirectToAction("Index");
-
-            else
-                return RedirectToAction("login");
-        }
 
         // GET Student/Register
         public ActionResult Register()
@@ -47,35 +28,66 @@ namespace GP.Controllers
         {
             if (ModelState.IsValid)
             {
-                student.leader_id = 0;
-                student.type = 1;
-                db.Students.Add(student);
+                if (db.Students.Where(m => m.email == student.email).Count() == 1)
+                {
+                    ModelState.AddModelError("", "This Email is Exist.");
+                    return View(student);
+                }
+                else
+                {
+                    student.leaderid = 0;
+                    student.type = 1;
+                    db.Students.Add(student);
+                    db.SaveChanges();
+                    return RedirectToAction("addIdea", student);
+                }
+            }
+
+            return View(student);
+        }
+
+        // GET: Students/addIdea
+        public ActionResult addIdea()
+        {
+            ViewBag.leaderid = new SelectList(db.Students, "id", "name");
+            ViewBag.professor1id = ViewBag.professor2id = ViewBag.professor3id =  new SelectList(db.Professors, "id", "name");
+            return View();
+        }
+
+        // POST: Students/addIdea
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id,leaderid,name,description,tools,professor1id,professor2id,professor3id,isApproved")] Idea idea)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Ideas.Add(idea);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(student);
+            ViewBag.leaderid = new SelectList(db.Students, "id", "name", idea.leaderid);
+            ViewBag.professor1id = ViewBag.professor2id = ViewBag.professor3id = new SelectList(db.Professors, "id", "name");
+            return View(idea);
         }
 
-        // GET: Students
-        public ActionResult Index()
+        // GET: Students/login
+        public ActionResult login()
         {
-            return View(db.Students.ToList());
+            return View();
         }
 
-        // GET: Students/Details/5
-        public ActionResult Details(int? id)
+        // POST: Students/login
+        [HttpPost]
+        public ActionResult login([Bind(Include = "email,password")]  Student student)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Student student = db.Students.Find(id);
-            if (student == null)
-            {
-                return HttpNotFound();
-            }
-            return View(student);
+            var studentList = db.Students.Where(m => m.email == student.email && m.password == student.password && m.type == 1).ToList();
+
+            if (studentList.Count != 0)
+                return RedirectToAction("Index");
+
+            else
+                return RedirectToAction("login");
         }
 
         // GET: Students/Add
@@ -97,6 +109,49 @@ namespace GP.Controllers
                 return RedirectToAction("Index");
             }
 
+            return View(student);
+        }
+
+        //ENCRYPT THE PASSWORD
+        public string encrypt(string password)
+        {
+            string result = "";
+            for (int i = 0; i < password.Length; i++)
+            {
+                result += (char)(password[i] + 1);
+            }
+
+            return result;
+        }
+
+        public string Decrypt(byte[] Pass)
+        {
+            string res = Encoding.UTF8.GetString(Pass);
+            return res;
+        }
+
+        /// <summary>
+        /// /////////
+        /// </summary>
+
+        // GET: Students
+        public ActionResult Index()
+        {
+            return View(db.Students.ToList());
+        }
+
+        // GET: Students/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Student student = db.Students.Find(id);
+            if (student == null)
+            {
+                return HttpNotFound();
+            }
             return View(student);
         }
 

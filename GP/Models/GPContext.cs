@@ -22,7 +22,12 @@ namespace Models.Models
         public System.Data.Entity.DbSet<Admin> Admins { get; set; }
 
         public System.Data.Entity.DbSet<Student> Students { get; set; }
+        
         public System.Data.Entity.DbSet<Idea> Ideas { get; set; }
+
         public System.Data.Entity.DbSet<Professor> Professors { get; set; }
+
+        public System.Data.Entity.DbSet<Department> Departments { get; set; }
+
     }
 }
