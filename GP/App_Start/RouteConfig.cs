@@ -13,11 +13,13 @@ namespace GP
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            /*
             routes.MapRoute(
                 name: "Login",
                 url: "Login",
                 defaults: new { controller = "Students", action = "login", id = UrlParameter.Optional }
             );
+            */
 
             routes.MapRoute(
                 name: "Register",

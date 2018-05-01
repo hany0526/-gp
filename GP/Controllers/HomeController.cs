@@ -1,5 +1,4 @@
-﻿using Models.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,16 +26,5 @@ namespace GP.Controllers
 
             return View();
         }
-
-        public ActionResult Student()
-        {
-            return View();
-        }
-
-        public ActionResult Doctor()
-        {
-            return View();
-        }
-
     }
 }

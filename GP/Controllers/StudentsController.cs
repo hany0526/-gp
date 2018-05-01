@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Models.Models;
 using System.Text;
+using System.IO;
 
 namespace GP.Controllers
 {
@@ -18,13 +19,15 @@ namespace GP.Controllers
         // GET Student/Register
         public ActionResult Register()
         {
+            ViewBag.Departmentid = new SelectList(db.Departments, "id", "name");
+            ViewBag.leaderid = new SelectList(db.Students, "id", "name");
             return View();
         }
 
         // POST: Students/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "id,name,email,password,level,GPA,skills")] Student student)
+        public ActionResult Register([Bind(Include = "id,name,email,password,Departmentid,level,GPA,skills,phone,leaderid,file")] Student student, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -35,14 +38,24 @@ namespace GP.Controllers
                 }
                 else
                 {
-                    student.leaderid = 0;
+                    string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
+                    upload.SaveAs(path);
+
+                    student.file = upload.FileName;
+                    student.leaderid = 1;
                     student.type = 1;
+                    student.password = student.password.GetHashCode().ToString();
+
+                    
                     db.Students.Add(student);
                     db.SaveChanges();
                     return RedirectToAction("addIdea", student);
                 }
             }
 
+            ViewBag.Departmentid = new SelectList(db.Departments, "id", "name");
+            ViewBag.leaderid = new SelectList(db.Students, "id", "name");
+            ModelState.AddModelError("", "you have some erorr.");
             return View(student);
         }
 
@@ -81,6 +94,7 @@ namespace GP.Controllers
         [HttpPost]
         public ActionResult login([Bind(Include = "email,password")]  Student student)
         {
+            
             var studentList = db.Students.Where(m => m.email == student.email && m.password == student.password && m.type == 1).ToList();
 
             if (studentList.Count != 0)
@@ -120,7 +134,6 @@ namespace GP.Controllers
             {
                 result += (char)(password[i] + 1);
             }
-
             return result;
         }
 

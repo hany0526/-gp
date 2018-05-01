@@ -29,5 +29,7 @@ namespace Models.Models
 
         public System.Data.Entity.DbSet<Department> Departments { get; set; }
 
+        //----------------------------------------------------------------//
+
     }
 }

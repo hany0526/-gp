@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 //using System.Data.Entity;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Models.Models
         public int id { set; get; }
 
         [Required]
+        [DisplayName("Professor Name")]
         public string name { set; get; }
 
         [Required]

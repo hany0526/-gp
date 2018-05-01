@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,7 @@ namespace Models.Models
         public int id { get; set; }
 
         [Required]
+        [DisplayName("Department= Name")]
         public string name { get; set; }
 
         public IEnumerable<Department> Departments()

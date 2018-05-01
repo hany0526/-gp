@@ -7,9 +7,8 @@ using System.Web;
 
 namespace Models.Models
 {
-    public class Admin //: DbContext
+    public class Admin
     {
-        //public DbSet<Admin> Admins { set; get; }
         [Required]
         public int id { set; get; }
         [Required]

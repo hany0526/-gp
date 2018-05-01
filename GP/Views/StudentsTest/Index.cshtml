@@ -7,15 +7,16 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Add Student", "Add")
+    @Html.ActionLink("Create New", "Create")
 </p>
-
-<p>
-    @Html.ActionLink("Add Idea", "addIdea")
-</p>
-
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.leader.name)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.type)
         </th>
@@ -38,13 +39,22 @@
             @Html.DisplayNameFor(model => model.skills)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.leaderid)
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.file)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.leader.name)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.type)
         </td>
@@ -67,7 +77,10 @@
             @Html.DisplayFor(modelItem => item.skills)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.leaderid)
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.file)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

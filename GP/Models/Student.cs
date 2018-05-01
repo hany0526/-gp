@@ -47,7 +47,7 @@ namespace Models.Models
         public Student leader { get; set; }
         public int leaderid { set; get; }
 
-        public byte[] file { get; set; }
+        public string file { get; set; }
 
     }
 }
